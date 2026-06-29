@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhanishtha Soni | Portfolio</title>
+    <style>
+        /* --- DESIGN SYSTEM & VARIABLES --- */
+        :root {
+            --bg-primary: #0f172a;       /* Deep Slate Blue */
+            --bg-secondary: #1e293b;     /* Card Background */
+            --accent-color: #a3e635;     /* Cyber Lime (High Contrast) */
+            --text-main: #f8fafc;        /* Near White */
+            --text-muted: #94a3b8;       /* Cool Gray */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 10%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- UTILITIES & LAYOUT --- */
+        section {
+            padding: 8rem 10% 4rem 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* --- HERO SECTION --- */
+        #home {
+            justify-content: center;
+            align-items: flex-start;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-pre {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero-name {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* --- ABOUT & SKILLS --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition-smooth);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .skill-card h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        /* --- PROJECTS --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(163, 230, 53, 0.1);
+            color: var(--accent-color);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- CONTACT --- */
+        #contact {
+            align-items: center;
+            text-align: center;
+            min-height: 80vh;
+        }
+
+        .contact-container {
+            max-width: 600px;
+        }
+
+        .contact-container p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- KEYFRAMES / ANIMATIONS --- */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            header { padding: 1.5rem 5%; }
+            section { padding: 6rem 5% 3rem 5%; }
+            .hero-name { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.8rem; }
+            .about-container { grid-template-columns: 1fr; gap: 2rem; }
+            nav { display: none; } /* Simplified for pure HTML/CSS without burger JS */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#home" class="logo">DS<span>.</span></a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <p class="hero-pre">Hi, my name is</p>
+        <h1 class="hero-name">Dhanishtha Soni.</h1>
+        <h2 class="hero-subtitle">I build scalable digital experiences.</h2>
+        <p class="hero-desc">
+            I am a Computer Science & Engineering student at GITS Udaipur, specializing in building modern web applications, data-driven analysis, and clean software architecture.
+        </p>
+        <a href="#projects" class="btn">View My Work</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>
+                    Hello! I'm Dhanishtha, a passionate tech enthusiast currently pursuing my B.Tech. in Computer Science & Engineering at <strong>Geetanjali Institute of Technical Studies (GITS), Udaipur</strong>. 
+                </p>
+                <p>
+                    My academic journey has driven me deep into full-stack development and data architectures. I love bridging the gap between robust backend structures and responsive, visual frontends.
+                </p>
+                <p>
+                    When I'm not writing code or analyzing data patterns, I focus on building version-controlled, collaborative projects and keeping up with evolving modern tech frameworks.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card"><h4>Python</h4></div>
+            <div class="skill-card"><h4>C++</h4></div>
+            <div class="skill-card"><h4>C</h4></div>
+            <div class="skill-card"><h4>MERN Stack</h4></div>
+            <div class="skill-card"><h4>Data Analysis</h4></div>
+            <div class="skill-card"><h4>Data Visualisation</h4></div>
+            <div class="skill-card"><h4>Git</h4></div>
+            <div class="skill-card"><h4>GitHub</h4></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <div>
+                    <h3 class="project-title">MERN E-Commerce Platform</h3>
+                    <p class="project-desc">A full-featured shopping platform with secure user authentication, product management dashboards, state management, and custom API integration.</p>
+                    <div class="project-tags">
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Express</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com" target="_blank">View on GitHub &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3 class="project-title">Data Metrics Dashboard</h3>
+                    <p class="project-desc">An interactive analytics application designed to clean, process, and map complex data arrays into dynamic, scannable user charts and trends.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Analysis</span>
+                        <span class="tag">Visualisation</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com" target="_blank">View on GitHub &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3 class="project-title">Algorithmic Problem Solver</h3>
+                    <p class="project-desc">A optimized collection of complex data structures and customized algorithms written efficiently in low-level languages to optimize runtime performance.</p>
+                    <div class="project-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">C</span>
+                        <span class="tag">Git</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com" target="_blank">View on GitHub &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Get In Touch</h2>
+            <p>I am currently looking for internship opportunities and developer roles. Whether you have a question or just want to connect, feel free to drop me an email!</p>
+            <a href="mailto:your.email@example.com" class="btn">Say Hello</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dhanishtha Soni. Built with HTML & CSS.</p>
+    </footer>
+
+</body>
+</html>
